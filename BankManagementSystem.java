@@ -14,7 +14,17 @@ class BankAccount {
     }
 
     int input() {
-        return Integer.parseInt(sc.nextLine());
+        int a = -1;
+        do {
+            try {
+                a = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Invalid Input!\nEnter Again:");
+            } finally {
+                sc.nextLine();
+            }
+        } while (a<0);
+        return a;
     }
 
     void deposit() {
@@ -27,9 +37,17 @@ class BankAccount {
     }
 
     void withdraw() {
+        if (balance == 0) {
+            System.out.println("Balance is zero!\nAdd some money first.");
+            return;
+        }
+
         System.out.println("Enter an amount to withdraw: ");
         int amount = input();
-        if (amount != 0) {
+
+        if (amount > balance)
+            System.out.println("Not enough balance!");
+        else if (amount != 0) {
             balance = balance - amount;
             previousTransaction = -amount;
         }
@@ -71,13 +89,10 @@ class BankAccount {
                     default -> System.out.println("Invalid input!");
                 }
             } while (option != 5);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
-        }
-         finally {
+        } finally {
             sc.close();
         }
     }
