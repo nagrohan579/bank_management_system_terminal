@@ -63,6 +63,10 @@ class BankAccount {
         }
 
     }
+    void displayBalance()
+    {
+        System.out.println("Balanace: "+balance);
+    }
 
     void showMenu() {
         int option;
@@ -81,7 +85,7 @@ class BankAccount {
                 option = input();
 
                 switch (option) {
-                    case 1 -> System.out.println("Balance: " + balance);
+                    case 1 -> displayBalance();
                     case 2 -> deposit();
                     case 3 -> withdraw();
                     case 4 -> getPreviousTransaction();
